@@ -20,6 +20,10 @@ app.locals.title = 'Neil sickass server';
 
 // })
 
+
+// RECENTLY RELEASED (MAIN)
+
+
 app.get('/recently_released', (req, res) => {
 
     axios({
@@ -30,7 +34,7 @@ app.get('/recently_released', (req, res) => {
             'Client-ID': '3a8e9rxb53epaje6lad5z58r4t4n9u',
             'Authorization': 'Bearer 7m200g0j426udal1ekbr5hd5nifnc3',
         },
-        data: 'fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,platforms.platform_logo.url; where first_release_date <= 1676247209 & aggregated_rating >= 80 & version_parent = null; sort first_release_date desc; limit 50;'
+        data: 'fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,platforms.platform_logo.url,screenshots.url,videos.name,videos.video_id; where first_release_date <= 1676247209 & aggregated_rating >= 80 & version_parent = null; sort first_release_date desc; limit 50;'
     })
     .then(response => {
         res.json(response.data);
@@ -43,6 +47,7 @@ app.get('/recently_released', (req, res) => {
 });
 
 
+
 app.get('/anticipated', (req, res) => {
 
     axios({
@@ -53,7 +58,7 @@ app.get('/anticipated', (req, res) => {
             'Client-ID': '3a8e9rxb53epaje6lad5z58r4t4n9u',
             'Authorization': 'Bearer 7m200g0j426udal1ekbr5hd5nifnc3',
         },
-        data: 'fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,platforms.platform_logo.url; where first_release_date >= 1676247209 & hypes > 10 & version_parent = null; sort hypes desc; limit 50;'
+        data: 'fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,platforms.platform_logo.url,screenshots.url,videos.name,videos.video_id; where first_release_date >= 1676247209 & hypes > 10 & version_parent = null; sort hypes desc; limit 50;'
     })
     .then(response => {
         res.json(response.data);
