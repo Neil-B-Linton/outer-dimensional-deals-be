@@ -34,7 +34,7 @@ app.post('/genre_full', (req, res) => {
             'Client-ID': '3a8e9rxb53epaje6lad5z58r4t4n9u',
             'Authorization': 'Bearer hxbxfktpq34b2oru7ivokpt9oa9t8u',
         },
-        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,summary,storyline,screenshots.url,videos.name,videos.video_id; where first_release_date >= 1676247209 & version_parent = null & genres = ${req.body.id}; sort first_release_desc; limit 60;`
+        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,summary,storyline,screenshots.url,videos.name,videos.video_id; where first_release_date >= 1676247209 & hypes >= 3 & version_parent = null & genres = ${req.body.id}; sort hypes desc; limit 60;`
     })
     .then(response => {
         res.json(response.data);
@@ -97,7 +97,7 @@ app.post('/genre', (req, res) => {
             'Client-ID': '3a8e9rxb53epaje6lad5z58r4t4n9u',
             'Authorization': 'Bearer hxbxfktpq34b2oru7ivokpt9oa9t8u',
         },
-        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,summary,storyline,screenshots.url,videos.name,videos.video_id; where first_release_date >= 1676247209 & version_parent = null & genres = ${req.body.id}; sort fist_release_desc; limit 16;`
+        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,summary,storyline,screenshots.url,videos.name,videos.video_id; where release_dates.platform = (6) & rating >= 90 & version_parent = null & genres = ${req.body.id}; sort rating desc; limit 16;`
     })
     .then(response => {
         res.json(response.data);
