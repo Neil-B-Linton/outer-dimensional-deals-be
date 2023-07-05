@@ -44,6 +44,27 @@ app.delete('/delete_data', (req, res) => {
 
 // RECENTLY RELEASED (MAIN)
 
+app.post('/search_games', (req, res) => {
+    console.log(req.body.search)
+
+    axios({
+        url: "https://api.igdb.com/v4/games",
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Client-ID': '3a8e9rxb53epaje6lad5z58r4t4n9u',
+            'Authorization': 'Bearer hxbxfktpq34b2oru7ivokpt9oa9t8u',
+        },
+        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.platform_logo.url,screenshots.url,videos.name,videos.video_id; where release_dates.platform = (6) & version_parent = null; search "${req.body.search}";`
+    })
+    .then(response => {
+        res.json(response.data);
+    })
+    .catch(err => {
+        res.send(err);
+    });
+});
+
 app.post('/genre_full', (req, res) => {
     console.log(req.body.id)
     
