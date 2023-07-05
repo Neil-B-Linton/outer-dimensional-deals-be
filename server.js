@@ -55,7 +55,7 @@ app.post('/search_games', (req, res) => {
             'Client-ID': '3a8e9rxb53epaje6lad5z58r4t4n9u',
             'Authorization': 'Bearer hxbxfktpq34b2oru7ivokpt9oa9t8u',
         },
-        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.platform_logo.url,screenshots.url,videos.name,videos.video_id; where release_dates.platform = (6) & version_parent = null; search "${req.body.search}";`
+        data: `fields name,aggregated_rating,release_dates.human,cover.url,genres.name,platforms.name,summary,storyline,screenshots.url,videos.name,videos.video_id; where release_dates.platform = (6) & version_parent = null; search "${req.body.search}";`
     })
     .then(response => {
         res.json(response.data);
