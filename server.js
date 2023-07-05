@@ -22,7 +22,28 @@ app.locals.title = 'Neil sickass server';
 // })
 
 
+app.locals.games = [];
+
+app.post('/save_data', (req, res) => {
+    app.locals.games.push(req.body)
+    res.status(201).json(req.body)
+})
+
+app.get('/display_saved', (req, res) => {
+    const games = app.locals.games
+
+    res.json({ games })
+})
+
+app.delete('/delete_data', (req, res) => {
+    const Index = app.locals.games.findIndex(({ id }) => id === req.body.id)
+        if (Index >= 0) {
+            app.locals.games.splice(Index, 1)
+        }
+})
+
 // RECENTLY RELEASED (MAIN)
+
 app.post('/genre_full', (req, res) => {
     console.log(req.body.id)
     
