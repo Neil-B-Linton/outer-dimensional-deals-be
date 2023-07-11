@@ -9,20 +9,12 @@ app.use(express.json({ limit: '1mb' }));
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Neil sickass server';
 
-// app.get('/', (req, res) => {
-
-// })
-
-// app.post('/', (req, res) => {
-
-// })
-
-// app.delete('/', (req, res) => {
-
-// })
-
 
 app.locals.games = [];
+
+app.get('/', (req, res) => {
+    res.send('Hey this is my API running 🥳')
+  })
 
 app.post('/save_data', (req, res) => {
     app.locals.games.push(req.body)
